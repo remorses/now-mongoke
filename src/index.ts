@@ -72,7 +72,7 @@ export const build = async ({
         join(workPath, dirname(entrypoint), MONGOKE_GENERATED_CODE_PATH)
     )
     debug('new entrypoint is ' + newEntrypoint)
-    replaceVariableInFile(
+    await replaceVariableInFile(
         join(__dirname, 'now_init.py'),
         '__MONGOKE_PARENT_DIR',
         dirname(newEntrypoint)

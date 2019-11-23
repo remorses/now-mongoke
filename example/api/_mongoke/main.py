@@ -11,8 +11,7 @@ from starlette.middleware.errors import ServerErrorMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from .middleware import JwtMiddleware
 from .engine import CustomEngine, read
-import sys
-print(sys.path)
+
 import _mongoke.generated.resolvers.user
 import _mongoke.generated.resolvers.users
 import _mongoke.generated.resolvers.human
