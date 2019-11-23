@@ -55,7 +55,7 @@ export const build = async ({
     const newEntrypoint = await generateMongokeFiles(
         entrypoint,
         workPath,
-        join(dirname(entrypoint), MONGOKE_GENERATED_CODE_PATH)
+        join(workPath, dirname(entrypoint), MONGOKE_GENERATED_CODE_PATH)
     )
     debug('new entrypoint is ' + newEntrypoint)
     return await pythonBuild({
