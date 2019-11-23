@@ -4,6 +4,10 @@ import base64
 import json
 import inspect
 
+import sys
+sys.path += '__MONGOKE_PARENT_DIR'
+
+
 import __NOW_HANDLER_FILENAME
 __now_variables = dir(__NOW_HANDLER_FILENAME)
 
