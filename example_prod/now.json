@@ -1,7 +1,7 @@
 {
     "functions": {
-        "mongoke.yml": {
-            "runtime": "now-mongoke@1.0.1"
+        "api/mongoke.yml": {
+            "runtime": "mongoke-now@1.0.0"
         }
     },
     "env": {
