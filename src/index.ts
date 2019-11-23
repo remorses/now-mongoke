@@ -17,7 +17,7 @@ import {
     FileFsRef
 } from '@now/build-utils'
 import execa from 'execa'
-import { pretty } from './support'
+import { pretty, pipInstall } from './support'
 
 const MONGOKE_GENERATED_CODE_PATH = '_mongoke'
 
@@ -32,6 +32,7 @@ tartiflette_scalars>=0.0.6
 mongodb_streams>=0.0.7
 mangum
 `
+
 
 const generateMongokeFiles = async (
     mongokeConfigPath,
@@ -77,18 +78,19 @@ export const build = async ({
     config
 }: BuildOptions) => {
     // let downloadedFiles = await download(originalFiles, workPath, meta)
-    pretty({
-        workPath,
-        files: originalFiles,
-        entrypoint,
-        meta,
-        config
-    })
+    // pretty({
+    //     workPath,
+    //     files: originalFiles,
+    //     entrypoint,
+    //     meta,
+    //     config
+    // })
     const mongokeDirPath = join(
         workPath,
         dirname(entrypoint),
         MONGOKE_GENERATED_CODE_PATH
     )
+    await pipInstall('pip3', workPath, 'mongoke')
     const newEntrypoint = await generateMongokeFiles(
         entrypoint,
         workPath,

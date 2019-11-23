@@ -1,9 +1,10 @@
 {
-    "functions": {
-        "api/mongoke.yml": {
-            "runtime": "mongoke-now@1.0.6"
+    "builds": [
+        {
+            "src": "api/mongoke.yml",
+            "use": "mongoke-now@latest"
         }
-    },
+    ],
     "env": {
         "DB_URL": "mongodb://localhost/db"
     }
