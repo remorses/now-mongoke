@@ -5,6 +5,8 @@ from tartiflette import Resolver, Engine
 from tartiflette_asgi import TartifletteApp, GraphiQL
 from tartiflette_plugin_apollo_federation import ApolloFederationPlugin
 from starlette.middleware.cors import CORSMiddleware
+from starlette.requests import Request
+from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.errors import ServerErrorMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from .middleware import JwtMiddleware
@@ -38,7 +40,7 @@ sdl_files = [sdl_dir + f for f in sdl_files]
 
 def make_app():
     graphiql = GraphiQL(
-        path="/xxx",
+        # path="/xxx",
         default_headers={"Authorization": "Bearer " + GRAPHIQL_DEFAULT_JWT}
         if GRAPHIQL_DEFAULT_JWT
         else {},
@@ -61,10 +63,15 @@ def make_app():
     )
     return app
 
+class CatchAll(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, handler):
+        request.scope["path"] = "/"
+        return await handler(request)
 
 app = make_app()
 app = CORSMiddleware(app, allow_origins=["*"], allow_methods=["*"])
 app = JwtMiddleware(app,)
 app = ServerErrorMiddleware(app,)
+app = CatchAll(app,)
 
 

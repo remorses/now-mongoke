@@ -14,7 +14,7 @@ import {
 import execa from 'execa'
 import { pretty } from './support'
 
-const MONGOKE_GENERATED_CODE_PATH = '.mongoke'
+const MONGOKE_GENERATED_CODE_PATH = 'mongoke'
 
 const generateMongokeFiles = async (
     mongokeConfigPath,
@@ -69,3 +69,5 @@ export const build = async ({
         config
     })
 }
+
+export { shouldServe }
