@@ -79,6 +79,11 @@ export const build = async ({
         '__MONGOKE_PARENT_DIR',
         relative(workPath, dirname(mongokeDirPath))
     )
+    await replaceVariableInFile(
+        join(__dirname, 'now_init.py'),
+        '__MONGOKE_BASE_PATH',
+        '/' + entrypoint
+    )
     // originalFiles[newEntrypoint] = new FileFsRef({
     //     fsPath: join(workPath, newEntrypoint)
     // })

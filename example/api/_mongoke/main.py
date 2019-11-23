@@ -22,7 +22,7 @@ import _mongoke.generated.resolvers.user_likes_over_time
 import _mongoke.generated.resolvers.user_father
 import _mongoke.generated.scalars
 
-
+MONGOKE_BASE_PATH = os.getenv("MONGOKE_BASE_PATH", "/")
 DISABLE_GRAPHIQL = bool(os.getenv("DISABLE_GRAPHIQL", False))
 GRAPHIQL_DEFAULT_JWT = os.getenv("GRAPHIQL_DEFAULT_JWT", "")
 GRAPHIQL_QUERY = os.getenv("GRAPHIQL_DEFAULT_QUERY", "") or read(
@@ -58,14 +58,14 @@ def make_app():
     app = TartifletteApp(
         context=context,
         engine=engine,
-        path="/",
+        path=MONGOKE_BASE_PATH,
         graphiql=graphiql if not DISABLE_GRAPHIQL else False,
     )
     return app
 
 class CatchAll(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, handler):
-        request.scope["path"] = "/"
+        request.scope["path"] = MONGOKE_BASE_PATH
         return await handler(request)
 
 app = make_app()
