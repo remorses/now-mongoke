@@ -33,7 +33,6 @@ mongodb_streams>=0.0.7
 mangum
 `
 
-
 const generateMongokeFiles = async (
     mongokeConfigPath,
     workDir: string,
@@ -90,7 +89,7 @@ export const build = async ({
         dirname(entrypoint),
         MONGOKE_GENERATED_CODE_PATH
     )
-    await pipInstall('pip3', workPath, 'mongoke')
+    if (!meta.isDev) await pipInstall('pip3', workPath, 'mongoke')
     const newEntrypoint = await generateMongokeFiles(
         entrypoint,
         workPath,
