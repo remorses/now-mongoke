@@ -2,6 +2,7 @@ jwt:
     algorithms: [H256]
     required: false
 
+    
 schema: |
     scalar Address
     scalar Url

@@ -1,5 +1,5 @@
 import { build as pythonBuild, shouldServe } from '@now/python'
-import { join, dirname, basename } from 'path'
+import { join, dirname, basename, relative } from 'path'
 import {
     getWriteableDirectory,
     download,
@@ -7,7 +7,8 @@ import {
     createLambda,
     // shouldServe,
     BuildOptions,
-    debug
+    debug,
+    FileRef
 } from '@now/build-utils'
 import execa from 'execa'
 import { pretty } from './support'
@@ -20,21 +21,19 @@ const generateMongokeFiles = async (
     generatedMongokePath
 ) => {
     debug('generating mongoke code')
-    await execa(
-        'python',
-        [
-            '-m',
-            'mongoke',
-            mongokeConfigPath,
-            '--generated-path',
-            generatedMongokePath
-        ],
-        {
-            cwd: workDir,
-            stdio: 'pipe'
-        }
-    )
-    return join(generatedMongokePath, 'main.py')
+    const args = [
+        '-m',
+        'mongoke',
+        mongokeConfigPath,
+        '--generated-path',
+        generatedMongokePath
+    ]
+    debug(`executing ${'python ' + args.join(' ')}`)
+    await execa('python', args, {
+        cwd: workDir,
+        stdio: 'pipe'
+    })
+    return relative(workDir, join(generatedMongokePath, 'main.py'))
 }
 
 export const build = async ({
@@ -58,6 +57,11 @@ export const build = async ({
         join(workPath, dirname(entrypoint), MONGOKE_GENERATED_CODE_PATH)
     )
     debug('new entrypoint is ' + newEntrypoint)
+    originalFiles[newEntrypoint] = new FileRef({
+        digest: '',
+        mutable: true,
+        contentType: 'text'
+    })
     return await pythonBuild({
         workPath,
         files: originalFiles,
