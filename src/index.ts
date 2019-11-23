@@ -48,7 +48,7 @@ const generateMongokeFiles = async (
         generatedMongokePath
     ]
     debug(`executing ${'python ' + args.join(' ')}`)
-    await execa('python', args, {
+    await execa('python3', args, {
         cwd: workDir,
         stdio: 'pipe'
     })
