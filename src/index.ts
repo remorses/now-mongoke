@@ -1,5 +1,9 @@
-import { build as pythonBuild, } from '@now/python'
+import { build as pythonBuild } from '@now/python'
 import { join, dirname, basename, relative } from 'path'
+import fs from 'fs'
+import { promisify } from 'util'
+const readFile = promisify(fs.readFile)
+const writeFile = promisify(fs.writeFile)
 import {
     getWriteableDirectory,
     download,
@@ -37,6 +41,16 @@ const generateMongokeFiles = async (
     return relative(workDir, join(generatedMongokePath, 'main.py'))
 }
 
+const replaceVariableInFile = async (path, variable, replacement) => {
+    const originalNowHandlerPyContents = await readFile(path, 'utf8')
+
+    const nowHandlerPyContents = originalNowHandlerPyContents.replace(
+        variable,
+        replacement
+    )
+    await writeFile(path, nowHandlerPyContents)
+}
+
 export const build = async ({
     workPath,
     files: originalFiles,
@@ -58,9 +72,14 @@ export const build = async ({
         join(workPath, dirname(entrypoint), MONGOKE_GENERATED_CODE_PATH)
     )
     debug('new entrypoint is ' + newEntrypoint)
-    originalFiles[newEntrypoint] = new FileFsRef({
-        fsPath: join(workPath, newEntrypoint)
-    })
+    replaceVariableInFile(
+        join(__dirname, 'now_init.py'),
+        '__MONGOKE_PARENT_DIR',
+        dirname(newEntrypoint)
+    )
+    // originalFiles[newEntrypoint] = new FileFsRef({
+    //     fsPath: join(workPath, newEntrypoint)
+    // })
     return await pythonBuild({
         workPath,
         files: await glob('**', workPath),
