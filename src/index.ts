@@ -1,5 +1,5 @@
 import { build as pythonBuild, shouldServe } from '@now/python'
-import { join, dirname, basename } from 'path';
+import { join, dirname, basename } from 'path'
 import {
     getWriteableDirectory,
     download,
@@ -9,7 +9,32 @@ import {
     BuildOptions,
     debug
 } from '@now/build-utils'
+import execa from 'execa'
 import { pretty } from './support'
+
+const MONGOKE_GENERATED_CODE_PATH = 'generated_mongoke'
+
+const generateMongokeFiles = async (
+    mongokeConfigPath,
+    workDir: string,
+    generatedMongokePath
+) => {
+    await execa(
+        'python',
+        [
+            '-m',
+            'mongoke',
+            mongokeConfigPath,
+            '--generated-path',
+            generatedMongokePath
+        ],
+        {
+            cwd: workDir,
+            stdio: 'pipe'
+        }
+    )
+    return join(generatedMongokePath, 'main.py')
+}
 
 export const build = async ({
     workPath,
@@ -25,10 +50,15 @@ export const build = async ({
         meta,
         config
     })
+    const newEntrypoint = await generateMongokeFiles(
+        entrypoint,
+        workPath,
+        join(workPath, MONGOKE_GENERATED_CODE_PATH)
+    )
     return await pythonBuild({
         workPath,
         files: originalFiles,
-        entrypoint,
+        entrypoint: newEntrypoint,
         meta,
         config
     })
