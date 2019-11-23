@@ -71,5 +71,7 @@ export const build = async ({
 }
 
 export const shouldServe = (options: ShouldServeOptions) => {
+    debug('printing options for shouldServe')
+    pretty(options)
     return true
 }
