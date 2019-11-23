@@ -1,4 +1,5 @@
 import { build as pythonBuild, shouldServe } from '@now/python'
+import { join, dirname, basename } from 'path';
 import {
     getWriteableDirectory,
     download,
@@ -24,7 +25,7 @@ export const build = async ({
         meta,
         config
     })
-    await pythonBuild({
+    return await pythonBuild({
         workPath,
         files: originalFiles,
         entrypoint,
