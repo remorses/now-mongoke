@@ -24,13 +24,11 @@ const MONGOKE_GENERATED_CODE_PATH = '_mongoke'
 const requirements = `
 coloredlogs
 PyJWT
-tartiflette>=1.0.0rc2
-tartiflette-asgi
-uvicorn
+# tartiflette>=1.0.0rc2
+# tartiflette-asgi
 tartiflette_plugin_apollo_federation
 motor
 tartiflette_scalars>=0.0.6
-aiohttp-cors
 mongodb_streams>=0.0.7
 mangum
 `
