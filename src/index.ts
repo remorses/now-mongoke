@@ -8,7 +8,8 @@ import {
     // shouldServe,
     BuildOptions,
     debug,
-    FileRef
+    FileRef,
+    FileFsRef
 } from '@now/build-utils'
 import execa from 'execa'
 import { pretty } from './support'
@@ -57,10 +58,8 @@ export const build = async ({
         join(workPath, dirname(entrypoint), MONGOKE_GENERATED_CODE_PATH)
     )
     debug('new entrypoint is ' + newEntrypoint)
-    originalFiles[newEntrypoint] = new FileRef({
-        digest: '',
-        mutable: true,
-        contentType: 'text'
+    originalFiles[newEntrypoint] = new FileFsRef({
+        fsPath: join(workPath, newEntrypoint)
     })
     return await pythonBuild({
         workPath,
