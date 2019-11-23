@@ -17,7 +17,15 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: tsc
-      - run: yarn build && npm publish
+      - run: npm version --no-git-tag-version patch
+      - run: yarn build
+      - name: Bump version
+        uses: remorses/bump-version@js
+        with:
+          version_file: VERSION
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
       # - name: Docker Login
@@ -31,13 +39,7 @@ jobs:
       #     set -x
       #     docker build . -t xmorse/example:latest
       #     docker push xmorse/example:latest
-      - run: npm version --no-git-tag-version patch
-      - name: Bump version
-        uses: remorses/bump-version@js
-        with:
-          version_file: VERSION
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 
 
