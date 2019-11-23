@@ -21,6 +21,7 @@ export async function pipInstall(
     workDir: string,
     ...args: string[]
 ) {
+    const target = '.'
     // See: https://github.com/pypa/pip/issues/4222#issuecomment-417646535
     //
     // Disable installing to the Python user install directory, which is
@@ -30,7 +31,7 @@ export async function pipInstall(
     // prefix, exec_prefix/home, or install_(plat)base
     process.env.PIP_USER = '0'
     debug(
-        `Running "pip install --disable-pip-version-check --upgrade ${args.join(
+        `Running "pip install --disable-pip-version-check --target ${target} --upgrade ${args.join(
             ' '
         )}"...`
     )
@@ -40,6 +41,8 @@ export async function pipInstall(
             [
                 'install',
                 '--disable-pip-version-check',
+                '--target',
+                target,
                 '--upgrade',
                 ...args
             ],
@@ -50,7 +53,7 @@ export async function pipInstall(
         )
     } catch (err) {
         console.log(
-            `Failed to run "pip install --disable-pip-version-check --upgrade ${args.join(
+            `Failed to run "pip install --disable-pip-version-check --target ${target} --upgrade ${args.join(
                 ' '
             )}"...`
         )
