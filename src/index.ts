@@ -1,4 +1,4 @@
-import { build as pythonBuild } from '@now/python'
+import { build as pythonBuild,  } from '@now/python'
 import { join, dirname, basename, relative } from 'path'
 import fs from 'fs'
 import { promisify } from 'util'
@@ -8,6 +8,7 @@ import {
     getWriteableDirectory,
     download,
     glob,
+    shouldServe as pythonShouldServe,
     createLambda,
     ShouldServeOptions,
     BuildOptions,
@@ -66,20 +67,22 @@ export const build = async ({
         meta,
         config
     })
+    const mongokeDirPath = join(workPath, dirname(entrypoint), MONGOKE_GENERATED_CODE_PATH)
     const newEntrypoint = await generateMongokeFiles(
         entrypoint,
         workPath,
-        join(workPath, dirname(entrypoint), MONGOKE_GENERATED_CODE_PATH)
+        mongokeDirPath
     )
     debug('new entrypoint is ' + newEntrypoint)
     await replaceVariableInFile(
         join(__dirname, 'now_init.py'),
         '__MONGOKE_PARENT_DIR',
-        join(workPath, dirname(newEntrypoint))
+        relative(workPath, dirname(mongokeDirPath))
     )
     // originalFiles[newEntrypoint] = new FileFsRef({
     //     fsPath: join(workPath, newEntrypoint)
     // })
+    // meta.isDev = false
     return await pythonBuild({
         workPath,
         files: await glob('**', workPath),
@@ -91,8 +94,7 @@ export const build = async ({
 
 export const shouldServe = (options: ShouldServeOptions) => {
     debug('printing options for shouldServe')
-    pretty(options)
-    return true
+    return pythonShouldServe(options)
 }
 
 export const version = 3

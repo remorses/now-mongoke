@@ -2,7 +2,8 @@ jwt:
     algorithms: [H256]
     required: false
 
-    
+# db_url: mongodb://localhost/db
+
 schema: |
     scalar Address
     scalar Url

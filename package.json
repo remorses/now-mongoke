@@ -12,7 +12,8 @@
   "scripts": {
     "test": "mocha --require ts-node/register --timeout 10000 tests/* --colors",
     "build": "./build.sh",
-    "prepublishOnly": "./build.sh"
+    "prepublishOnly": "./build.sh",
+    "dev": "yarn build"
   },
   "keywords": [],
   "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
