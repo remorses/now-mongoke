@@ -9,6 +9,8 @@ play*
 dist/*
 .now
 
+__pycache__
+
 # Runtime data
 pids
 *.pid
