@@ -1,13 +1,17 @@
 {
-  "name": "nodejs-lib-template",
+  "name": "mongoke-now",
   "_": "[bump]",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["/dist/*"],
+  "files": [
+    "/dist/*"
+  ],
   "scripts": {
-    "test": "mocha --require ts-node/register --timeout 10000 tests/* --colors"
+    "test": "mocha --require ts-node/register --timeout 10000 tests/* --colors",
+    "build": "./build.sh",
+    "prepublishOnly": "./build.sh"
   },
   "keywords": [],
   "author": "Tommaso De Rossi, morse <beats.by.morse@gmail.com>",
@@ -18,5 +22,9 @@
     "mocha": "^6.1.4",
     "ts-node": "^8.2.0",
     "typescript": "^3.5.1"
+  },
+  "dependencies": {
+    "@now/build-utils": "^1.1.0",
+    "@now/python": "^1.0.0"
   }
 }

@@ -1,0 +1,7 @@
+{
+    "functions": {
+        "api/index.py": {
+            "runtime": "mongoke-now@0.0.1"
+        }
+    }
+}
