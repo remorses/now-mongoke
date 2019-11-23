@@ -84,13 +84,13 @@ export const build = async ({
         '__MONGOKE_BASE_PATH',
         '/' + entrypoint
     )
-    // originalFiles[newEntrypoint] = new FileFsRef({
-    //     fsPath: join(workPath, newEntrypoint)
-    // })
+    originalFiles[newEntrypoint] = new FileFsRef({
+        fsPath: join(workPath, newEntrypoint)
+    })
     // meta.isDev = false
     return await pythonBuild({
         workPath,
-        files: await glob('**', workPath),
+        files: originalFiles, // await glob('**', workPath),
         entrypoint: newEntrypoint,
         meta,
         config

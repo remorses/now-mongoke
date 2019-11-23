@@ -24,8 +24,7 @@ def filter_nodes_by_guard(nodes, fields, jwt):
 map_fields_to_types = {
         "type": "String",
         "_id": "ID",
-        "name": "String",
-        "surname": "String"
+        "name": "String"
     }
 
 pipeline: list = []

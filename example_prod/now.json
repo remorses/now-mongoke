@@ -1,0 +1,10 @@
+{
+    "functions": {
+        "mongoke.yml": {
+            "runtime": "now-mongoke@1.0.1"
+        }
+    },
+    "env": {
+        "DB_URL": "mongodb://localhost/db"
+    }
+}

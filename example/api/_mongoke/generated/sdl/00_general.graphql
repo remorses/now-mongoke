@@ -10,25 +10,11 @@ enum Direction {
 }
 
 
-input WhereAddress {
-    in: [Address]
-    nin: [Address]
-    eq: Address
-    neq: Address
-}
-
-input WhereBoolean {
-    in: [Boolean]
-    nin: [Boolean]
-    eq: Boolean
-    neq: Boolean
-}
-
-input WhereInt {
-    in: [Int]
-    nin: [Int]
-    eq: Int
-    neq: Int
+input WhereString {
+    in: [String]
+    nin: [String]
+    eq: String
+    neq: String
 }
 
 input WhereFloat {
@@ -38,13 +24,6 @@ input WhereFloat {
     neq: Float
 }
 
-input WhereUrl {
-    in: [Url]
-    nin: [Url]
-    eq: Url
-    neq: Url
-}
-
 input WhereObjectId {
     in: [ObjectId]
     nin: [ObjectId]
@@ -52,11 +31,11 @@ input WhereObjectId {
     neq: ObjectId
 }
 
-input WhereString {
-    in: [String]
-    nin: [String]
-    eq: String
-    neq: String
+input WhereInt {
+    in: [Int]
+    nin: [Int]
+    eq: Int
+    neq: Int
 }
 
 input WhereID {
@@ -64,6 +43,27 @@ input WhereID {
     nin: [ID]
     eq: ID
     neq: ID
+}
+
+input WhereAddress {
+    in: [Address]
+    nin: [Address]
+    eq: Address
+    neq: Address
+}
+
+input WhereUrl {
+    in: [Url]
+    nin: [Url]
+    eq: Url
+    neq: Url
+}
+
+input WhereBoolean {
+    in: [Boolean]
+    nin: [Boolean]
+    eq: Boolean
+    neq: Boolean
 }
 
 

@@ -31,13 +31,9 @@ input UserWhere {
     # $not: [UserWhere]
     type: WhereString
     _id: WhereID
-    name: WhereString
-    surname: WhereString
 }
 
 enum UserFields {
     type
     _id
-    name
-    surname
 }

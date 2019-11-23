@@ -16,8 +16,6 @@ type Guest {
 type User {
     type: String
     _id: ID
-    name: String
-    surname: String
     friends_ids: [ID]
     url: Url
 }

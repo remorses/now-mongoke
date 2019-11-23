@@ -32,12 +32,10 @@ input HumanWhere {
     type: WhereString
     _id: WhereID
     name: WhereString
-    surname: WhereString
 }
 
 enum HumanFields {
     type
     _id
     name
-    surname
 }
