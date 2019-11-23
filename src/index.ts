@@ -75,3 +75,5 @@ export const shouldServe = (options: ShouldServeOptions) => {
     pretty(options)
     return true
 }
+
+export const version = 3
