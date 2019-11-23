@@ -32,6 +32,7 @@ motor
 tartiflette_scalars>=0.0.6
 aiohttp-cors
 mongodb_streams>=0.0.7
+mangum
 `
 
 const generateMongokeFiles = async (
