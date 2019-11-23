@@ -11,6 +11,7 @@
         "noImplicitReturns": true,
         "noImplicitAny": false,
         "outDir": "dist",
+        "skipLibCheck": true,
         "types": ["node"],
         "strict": true,
         "target": "esnext"
