@@ -50,7 +50,7 @@ export async function pipInstall(
         )
     } catch (err) {
         console.log(
-            `Failed to run "pip install --disable-pip-version-check --target ${target} --upgrade ${args.join(
+            `Failed to run "pip install --disable-pip-version-check --upgrade ${args.join(
                 ' '
             )}"...`
         )
