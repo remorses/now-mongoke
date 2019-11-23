@@ -63,7 +63,7 @@ export const build = async ({
     })
     return await pythonBuild({
         workPath,
-        files: originalFiles,
+        files: await glob('**', workPath),
         entrypoint: newEntrypoint,
         meta,
         config
