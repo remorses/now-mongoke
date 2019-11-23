@@ -21,6 +21,19 @@ import { pretty } from './support'
 
 const MONGOKE_GENERATED_CODE_PATH = '_mongoke'
 
+const requirements = `
+coloredlogs
+PyJWT
+tartiflette>=1.0.0rc2
+tartiflette-asgi
+uvicorn
+tartiflette_plugin_apollo_federation
+motor
+tartiflette_scalars>=0.0.6
+aiohttp-cors
+mongodb_streams>=0.0.7
+`
+
 const generateMongokeFiles = async (
     mongokeConfigPath,
     workDir: string,
@@ -39,6 +52,11 @@ const generateMongokeFiles = async (
         cwd: workDir,
         stdio: 'pipe'
     })
+    await writeFile(
+        join(generatedMongokePath, 'requirements.txt'),
+        requirements,
+        { encoding: 'utf8' }
+    )
     return relative(workDir, join(generatedMongokePath, 'main.py'))
 }
 
