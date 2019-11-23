@@ -1,11 +1,11 @@
-import { build as pythonBuild, shouldServe } from '@now/python'
+import { build as pythonBuild, } from '@now/python'
 import { join, dirname, basename, relative } from 'path'
 import {
     getWriteableDirectory,
     download,
     glob,
     createLambda,
-    // shouldServe,
+    ShouldServeOptions,
     BuildOptions,
     debug,
     FileRef,
@@ -14,7 +14,7 @@ import {
 import execa from 'execa'
 import { pretty } from './support'
 
-const MONGOKE_GENERATED_CODE_PATH = 'mongoke'
+const MONGOKE_GENERATED_CODE_PATH = '_mongoke'
 
 const generateMongokeFiles = async (
     mongokeConfigPath,
@@ -70,4 +70,6 @@ export const build = async ({
     })
 }
 
-export { shouldServe }
+export const shouldServe = (options: ShouldServeOptions) => {
+    return true
+}

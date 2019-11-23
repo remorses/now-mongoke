@@ -1,0 +1,11 @@
+
+extend type User {
+   friends(
+       where: UserWhere, 
+       cursorField: UserFields, 
+       first: Int, 
+       last: Int, 
+       after: AnyScalar, 
+       before: AnyScalar
+    ): UserConnection!
+}
