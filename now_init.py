@@ -5,7 +5,9 @@ import json
 import inspect
 
 import sys
-sys.path += [os.path.abspath('__MONGOKE_PARENT_DIR')]
+mongoke_parent = os.path.join(os.path.dirname(__file__), '__MONGOKE_PARENT_DIR')
+sys.path += [os.path.abspath(mongoke_parent)]
+
 
 
 import __NOW_HANDLER_FILENAME
