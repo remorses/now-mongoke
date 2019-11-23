@@ -76,7 +76,7 @@ export const build = async ({
     meta = {},
     config
 }: BuildOptions) => {
-    // let downloadedFiles = await download(originalFiles, workPath, meta)
+    let downloadedFiles = await download(originalFiles, workPath, meta)
     // pretty({
     //     workPath,
     //     files: originalFiles,
