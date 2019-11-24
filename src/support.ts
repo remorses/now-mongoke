@@ -41,7 +41,6 @@ export async function pipInstall(
             [
                 'install',
                 '--disable-pip-version-check',
-                target,
                 '--upgrade',
                 ...args
             ],
