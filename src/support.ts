@@ -31,7 +31,7 @@ export async function pipInstall(
     // prefix, exec_prefix/home, or install_(plat)base
     process.env.PIP_USER = '0'
     debug(
-        `Running "pip install --disable-pip-version-check --target ${target} --upgrade ${args.join(
+        `Running "pip install --disable-pip-version-check --upgrade ${args.join(
             ' '
         )}"...`
     )
@@ -41,7 +41,6 @@ export async function pipInstall(
             [
                 'install',
                 '--disable-pip-version-check',
-                '--target',
                 target,
                 '--upgrade',
                 ...args
