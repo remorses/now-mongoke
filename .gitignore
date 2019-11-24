@@ -8,7 +8,7 @@ yarn-error.log*
 play*
 dist/*
 .now
-
+_mongoke
 __pycache__
 
 # Runtime data

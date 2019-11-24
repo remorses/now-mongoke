@@ -24,6 +24,7 @@ const MONGOKE_GENERATED_CODE_PATH = '_mongoke'
 const requirements = `
 coloredlogs
 PyJWT
+dataclasses
 # tartiflette>=1.0.0rc2
 # tartiflette-asgi
 tartiflette_plugin_apollo_federation
