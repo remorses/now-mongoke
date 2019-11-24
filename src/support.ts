@@ -48,9 +48,8 @@ export async function pipInstall(
             ],
             {
                 cwd: workDir,
-                stdio: 'pipe',
                 env: {
-                    PYTHONPATH: target + ':' + process.env.PYTHONPATH
+                    // PYTHONPATH: target + ':' + process.env.PYTHONPATH
                 }
             }
         )
