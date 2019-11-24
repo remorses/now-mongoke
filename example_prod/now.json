@@ -2,7 +2,6 @@
     "builds": [
         {
             "src": "api/mongoke.yml",
-            "_": "[bump]",
             "use": "mongoke-now@1.0.13"
         }
     ],
