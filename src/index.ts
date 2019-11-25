@@ -32,7 +32,7 @@ tartiflette_plugin_apollo_federation
 motor
 tartiflette_scalars>=0.0.6
 mongodb_streams>=0.0.7
-mangum
+mangum==0.6.6
 `
 
 const generateMongokeFiles = async (
