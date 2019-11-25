@@ -25,7 +25,7 @@ const MONGOKE_GENERATED_CODE_PATH = '_mongoke'
 const requirements = `
 coloredlogs
 PyJWT
-dataclasses; python_version < '3.7.0'
+dataclasses; python_version < '3.7'
 # tartiflette>=1.0.0rc2
 # tartiflette-asgi
 tartiflette_plugin_apollo_federation
@@ -111,15 +111,16 @@ export const build = async ({
     )
     const newFiles = await glob('**', join(workPath, dirname(newEntrypoint)))
     // meta.isDev = false
-    const { output } = (await pythonBuild({
+    const { output }: { output: Lambda } = await pythonBuild({
         workPath,
         files: { ...originalFiles, ...newFiles },
         entrypoint: newEntrypoint,
         meta,
         config
-    })) as { output: Lambda }
+    })
 
     output.runtime = 'python3.8'
+    return { output }
     // output.environment = {
 
     // }
