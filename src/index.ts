@@ -59,7 +59,7 @@ const generateMongokeFiles = async (
         requirements,
         { encoding: 'utf8' }
     )
-    await aptInstall(['cmake', 'flex', 'bison'])
+    // await aptInstall(['cmake', 'flex', 'bison'])
     return relative(workDir, join(generatedMongokePath, 'main.py'))
 }
 

@@ -40,7 +40,8 @@ export async function pipInstall(
             pipPath,
             ['install', '--disable-pip-version-check', '--upgrade', ...args],
             {
-                cwd: workDir
+                cwd: workDir,
+                stdout: 'pipe'
             }
         )
     } catch (err) {
@@ -54,7 +55,9 @@ export async function pipInstall(
 }
 
 export async function aptInstall(packages: string[]) {
-    const args = ['install', '-y', ...packages]
-    debug('executing apt-get ' + args.join(' '))
-    await execa('apt-get', args)
+    try {
+        const args = ['install', '-y', ...packages]
+        debug('executing apt-get ' + args.join(' '))
+        await execa('apt-get', args, { stdout: 'pipe' })
+    } catch (e) {}
 }
