@@ -23,12 +23,12 @@ import { pretty, pipInstall } from './support'
 const MONGOKE_GENERATED_CODE_PATH = '_mongoke'
 
 const requirements = `
+tartiflette>=1.0.0
+tartiflette-asgi
 prtty
 coloredlogs
 PyJWT
 dataclasses; python_version < '3.7'
-# tartiflette>=1.0.0rc2
-# tartiflette-asgi
 tartiflette_plugin_apollo_federation
 motor
 tartiflette_scalars>=0.0.6

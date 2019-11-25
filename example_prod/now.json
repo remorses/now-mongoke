@@ -2,7 +2,7 @@
     "builds": [
         {
             "src": "api/mongoke.yml",
-            "use": "mongoke-now@1.0.20"
+            "use": "mongoke-now@latest"
         }
     ],
     "env": {
