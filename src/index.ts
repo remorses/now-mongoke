@@ -18,7 +18,7 @@ import {
     FileFsRef
 } from '@now/build-utils'
 import execa from 'execa'
-import { pretty, pipInstall } from './support'
+import { pretty, pipInstall, aptInstall } from './support'
 
 const MONGOKE_GENERATED_CODE_PATH = '_mongoke'
 
@@ -59,6 +59,7 @@ const generateMongokeFiles = async (
         requirements,
         { encoding: 'utf8' }
     )
+    await aptInstall(['cmake', 'flex', 'bison'])
     return relative(workDir, join(generatedMongokePath, 'main.py'))
 }
 
