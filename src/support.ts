@@ -46,9 +46,6 @@ export async function pipInstall(
             ],
             {
                 cwd: workDir,
-                env: {
-                    // PYTHONPATH: target + ':' + process.env.PYTHONPATH
-                }
             }
         )
     } catch (err) {

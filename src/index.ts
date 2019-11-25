@@ -79,6 +79,7 @@ export const build = async ({
     config
 }: BuildOptions) => {
     let downloadedFiles = await download(originalFiles, workPath, meta)
+    process.env.PYTHONPATH = workPath + ':' + process.env.PYTHONPATH
     // pretty({
     //     workPath,
     //     files: originalFiles,
