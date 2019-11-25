@@ -13,6 +13,7 @@ import {
     ShouldServeOptions,
     BuildOptions,
     debug,
+    Lambda,
     FileRef,
     FileFsRef
 } from '@now/build-utils'
@@ -110,13 +111,18 @@ export const build = async ({
     )
     const newFiles = await glob('**', join(workPath, dirname(newEntrypoint)))
     // meta.isDev = false
-    return await pythonBuild({
+    const { output } = (await pythonBuild({
         workPath,
         files: { ...originalFiles, ...newFiles },
         entrypoint: newEntrypoint,
         meta,
         config
-    })
+    })) as { output: Lambda }
+
+    output.runtime = 'python3.8'
+    // output.environment = {
+
+    // }
 }
 
 export const shouldServe = (options: ShouldServeOptions) => {
