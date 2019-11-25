@@ -24,7 +24,7 @@ const MONGOKE_GENERATED_CODE_PATH = '_mongoke'
 const requirements = `
 coloredlogs
 PyJWT
-dataclasses
+dataclasses; python_version < '3.7.0'
 # tartiflette>=1.0.0rc2
 # tartiflette-asgi
 tartiflette_plugin_apollo_federation
@@ -32,7 +32,6 @@ motor
 tartiflette_scalars>=0.0.6
 mongodb_streams>=0.0.7
 mangum
-dataclasses
 `
 
 const generateMongokeFiles = async (
@@ -78,7 +77,7 @@ export const build = async ({
     meta = {},
     config
 }: BuildOptions) => {
-    let downloadedFiles = await download(originalFiles, workPath, meta)
+    if (!meta.isDev) await download(originalFiles, workPath, meta)
     process.env.PYTHONPATH = workPath + ':' + process.env.PYTHONPATH
     // pretty({
     //     workPath,

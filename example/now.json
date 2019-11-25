@@ -4,6 +4,10 @@
         {
             "src": "api/mongoke.yml",
             "use": "file:/Users/morse/Documents/GitHub/now-mongoke/"
+        },
+        {
+            "src": "api/cosa.py",
+            "use": "@now/python"
         }
     ],
     "env": {
