@@ -23,6 +23,7 @@ import { pretty, pipInstall } from './support'
 const MONGOKE_GENERATED_CODE_PATH = '_mongoke'
 
 const requirements = `
+prtty
 coloredlogs
 PyJWT
 dataclasses; python_version < '3.7'
