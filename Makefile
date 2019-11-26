@@ -1,7 +1,10 @@
 
 
 dev:
+	rm mongoke-now-*.tgz || echo "skip rm"
 	yarn build
+	npm pack
+	mv mongoke-now-*.tgz mongoke-now.tgz
 	rm -rf example/.now
 	cd example && now dev -d
 

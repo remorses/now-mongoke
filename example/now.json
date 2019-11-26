@@ -3,7 +3,7 @@
     "builds": [
         {
             "src": "api/mongoke.yml",
-            "use": "file:/Users/morse/Documents/GitHub/now-mongoke/"
+            "use": "file:/Users/morse/Documents/GitHub/now-mongoke/mongoke-now.tgz"
         },
         {
             "src": "api/cosa.py",
