@@ -121,7 +121,7 @@ export const build = async ({
         config
     })
 
-    output.runtime = 'python3.8'
+    // output.runtime = 'python3.8'
     return { output }
     // output.environment = {
 
